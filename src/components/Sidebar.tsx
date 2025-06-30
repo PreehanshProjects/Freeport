@@ -19,7 +19,7 @@ const Sidebar = () => {
     <>
       {/* Burger menu button - only visible on mobile */}
       <button
-        className="md:hidden fixed top-4 left-4 z-50 p-2 rounded bg-darkBlue text-white"
+        className="md:hidden fixed top-4 left-4 z-60 p-2 rounded bg-darkBlue text-white"
         aria-label="Open menu"
         onClick={() => setIsOpen(true)}
       >

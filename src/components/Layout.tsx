@@ -6,17 +6,11 @@ import type { ReactNode } from "react";
 const Layout = ({ children }: { children: ReactNode }) => {
   const location = useLocation();
 
-  // Check if current route is login
-  const isLoginPage = location.pathname === "/login";
-  const isSignup = location.pathname === "/signup";
+  // Check if current route is login or signup
+  const isAuthPage = location.pathname === "/login" || location.pathname === "/signup";
 
-  if (isLoginPage) {
-    // Render children only (no Navbar or Sidebar)
-    return <div className="min-h-screen bg-gray-100">{children}</div>;
-  }
-
-  if (isSignup) {
-    // Render children only (no Navbar or Sidebar)
+  if (isAuthPage) {
+    // No Navbar or Sidebar on auth pages
     return <div className="min-h-screen bg-gray-100">{children}</div>;
   }
 
@@ -24,9 +18,11 @@ const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <div className="flex">
       <Sidebar />
-      <div className="flex-1 min-h-screen bg-gray-100">
+      {/* Add padding top equal to Navbar height */}
+      <div className="flex-1 min-h-screen bg-gray-100 pt-14">
         <Navbar />
-        <main className="p-6 pt-20">{children}</main>
+        {/* Reduced top padding here, since wrapper has pt-14 */}
+        <main className="p-6">{children}</main>
       </div>
     </div>
   );
