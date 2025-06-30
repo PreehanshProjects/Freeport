@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import { Box, Clock, Activity } from "lucide-react"; // Icons for tabs
 
 const stockItems = [
   { item: "Item A", quantity: 24, status: "In Stock" },
@@ -47,6 +48,9 @@ const Stock = () => {
   const [statusFilter, setStatusFilter] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
 
+  // Track active tab (but no action on click yet)
+  const [activeTab, setActiveTab] = useState("Current Levels");
+
   const filtered = useMemo(() => {
     if (statusFilter === "All") return stockItems;
     return stockItems.filter((s) => s.status === statusFilter);
@@ -65,11 +69,43 @@ const Stock = () => {
     setCurrentPage(1);
   };
 
-  return (
-    <div className="max-w-[1600px] w-full mx-auto p-6 bg-white rounded-xl shadow-lg">
-      <h2 className="text-3xl font-semibold mb-6 text-gray-800">Stock</h2>
+  // Tab click handler: only sets active tab, no other action
+  const handleTabClick = (tab: string) => {
+    setActiveTab(tab);
+  };
 
-      <div className="mb-6 flex items-center gap-4">
+  return (
+    <div className="max-w-[1600px] w-full mx-auto p-6 bg-white rounded-xl shadow-lg space-y-6">
+      <h2 className="text-3xl font-semibold text-gray-800">Stock</h2>
+
+      {/* Floating Tabs */}
+      <nav className="flex space-x-4 bg-white rounded-xl shadow-md px-4 py-2 w-max select-none cursor-pointer">
+        {[
+          { name: "Current Levels", icon: Box },
+          { name: "History", icon: Clock },
+          { name: "Movements", icon: Activity },
+        ].map(({ name, icon: Icon }) => (
+          <button
+            key={name}
+            onClick={() => handleTabClick(name)}
+            className={`flex items-center gap-2 rounded-full px-4 py-2 transition-colors
+              ${
+                activeTab === name
+                  ? "bg-primary text-white shadow"
+                  : "text-gray-600 hover:bg-primary/20"
+              }
+            `}
+            aria-current={activeTab === name ? "page" : undefined}
+            type="button"
+          >
+            <Icon className="w-5 h-5" />
+            <span className="font-medium">{name}</span>
+          </button>
+        ))}
+      </nav>
+
+      {/* Filter */}
+      <div className="flex items-center gap-4">
         <label htmlFor="status" className="font-medium text-gray-700">
           Filter by status:
         </label>
@@ -85,6 +121,7 @@ const Stock = () => {
         </select>
       </div>
 
+      {/* Table */}
       <div className="overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
@@ -144,7 +181,7 @@ const Stock = () => {
         </table>
       </div>
 
-      {/* Modern Pagination */}
+      {/* Pagination */}
       <nav
         className="mt-6 flex justify-center items-center space-x-2 select-none"
         aria-label="Pagination"
