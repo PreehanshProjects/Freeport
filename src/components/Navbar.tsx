@@ -14,7 +14,6 @@ const Navbar = () => {
   const handleLogout = () => {
     setLoggedIn(false);
     setDropdownOpen(false);
-    // add your logout logic here
     navigate("/login"); // redirect to login after logout
   };
 
