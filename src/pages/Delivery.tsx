@@ -70,7 +70,7 @@ const Delivery = () => {
   };
 
   return (
-    <div className="max-w-screen-xl w-full mx-auto p-6 bg-white rounded-xl shadow-lg">
+    <div className="max-w-[1600px] w-full mx-auto p-6 bg-white rounded-xl shadow-lg">
       <h2 className="text-3xl font-semibold mb-6 text-gray-800">Delivery</h2>
 
       <div className="mb-6 flex items-center gap-4">
