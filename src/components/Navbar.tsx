@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { User, LogOut } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-  // For demo: simple login toggle state
+  const navigate = useNavigate();
   const [loggedIn, setLoggedIn] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -14,11 +15,11 @@ const Navbar = () => {
     setLoggedIn(false);
     setDropdownOpen(false);
     // add your logout logic here
+    navigate("/login"); // redirect to login after logout
   };
 
   const handleLogin = () => {
-    setLoggedIn(true);
-    // add your login logic here
+    navigate("/login"); // navigate to login page
   };
 
   return (
