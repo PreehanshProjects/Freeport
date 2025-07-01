@@ -32,7 +32,7 @@ const Dashboard = () => {
 
         {/* Stock Overview */}
         <Card title="Stock Overview">
-          <div className="grid grid-cols-1 gap-4 mb-4">
+          <div className="grid grid-cols-1 gap-4">
             <SmallCard
               title="Current Stock Level"
               value={350}
@@ -41,19 +41,19 @@ const Dashboard = () => {
             <SmallCard title="Stock Summary" value={14} icon={PackageSearch} />
             <SmallCard title="Stock Movement" value={9} icon={Loader2} />
           </div>
-          <button className="flex items-center justify-center gap-2 w-full border border-primary text-primary font-semibold py-2 rounded-md hover:bg-primary hover:text-white transition-colors duration-200 cursor-pointer">
-            <Eye className="w-5 h-5" />
-            View Stock Overview
-          </button>
         </Card>
 
         {/* Order Summary */}
         <Card title="Order Summary">
-          <div className="grid grid-cols-1 gap-4">
+          <div className="grid grid-cols-1 gap-4 mb-4">
             <SmallCard title="Pending Orders" value={10} icon={Truck} />
             <SmallCard title="Orders In Progress" value={6} icon={Loader2} />
             <SmallCard title="Completed Orders" value={19} icon={CheckCircle} />
           </div>
+          <button className="flex items-center justify-center gap-2 w-full border border-primary text-primary font-semibold py-2 rounded-md hover:bg-primary hover:text-white transition-colors duration-200 cursor-pointer">
+            <Eye className="w-5 h-5" />
+            View Order Overview
+          </button>
         </Card>
       </div>
 
